@@ -1,4 +1,7 @@
 message de : {{$clientName}}
 
-{{$clientEmail}}
+-----------------------------
+email: {{$clientEmail}}
+----------------------------
+
 {{$leText}}

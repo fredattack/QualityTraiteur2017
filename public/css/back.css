@@ -1,0 +1,58 @@
+body{
+    background-color:#f7f7f7;
+}
+
+
+.table{
+    border:0;
+}
+#NavLogo {
+    max-width: 10em;
+}
+.navbar-custom {
+    background-color:#8DC23A;
+    color:#FBE6C9;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#FBE6C9;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: #FBE6C9;
+    background-color:transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    text-decoration: none;
+    background-color: #84255C;
+}
+
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+    background-color:#eeeeee;
+}
+.navbar-custom .icon-bar {
+    background-color:#84255C;
+}
+.nomProduit{
+    font-size: larger;
+}
+#backToHome{
+    background-color: #84255C;
+
+}
+#navRight{
+    margin-right: 4em;
+}
+
+#photoContainer,#horaireContainer,#userContainer{
+    padding: 2em;
+}
