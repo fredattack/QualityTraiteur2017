@@ -88,11 +88,6 @@ function Enter() {
     $('#footer').css('display','block');
     $('#navbar').removeClass('navbar-fixed-bottom');
     $('#navbar').addClass('navbar-fixed-top');
-    // $('#navbar').css('background-color','red');
-
-    // alert($('#navBar').attr("class"));
-
-
 }
 
 /*
@@ -368,15 +363,13 @@ function controleListFamille(listFamille, listProduit) {
 **********Divers*************
  */
 
-function resetAffichage() {
-    $( "#zoneProduit" ).css("transform","translateY(39em)");
-    setTimeout('    $( "#menuBt" ).css("transform","translateX(-7em)");',1000);
-    setTimeout("$('#listProduit').hide();",1000);
-}
+// function resetAffichage() {
+//     $( "#zoneProduit" ).css("transform","translateY(39em)");
+//     setTimeout('    $( "#menuBt" ).css("transform","translateX(-7em)");',1000);
+//     setTimeout("$('#listProduit').hide();",1000);
+// }
 
 function downloadFile() {
-    // alert('en cours de développement');
-    // Default export is a4 paper, portrait, using milimeters for units
     var doc = new jsPDF();
     doc.fromHtml($('#listProduit').get(0),20,30,{
         width:500});
@@ -398,7 +391,8 @@ function fillZoneAdvise(ret) {
     var row = "<h2>C'est vous qui le dites...</h2>";
     for(i=0;i<listAdvise.length;i++ )
     {
-    row+= '<div class="col-lg-4 adviseCard" > ' +
+        var identifiantRating= "#"+listAdvise[i].id ;
+        row+= '<div class="col-lg-4 adviseCard" > ' +
      '<div class="card">' +
         '<div class="card-block">' +
          '<div class="card-text textBlock" >' +

@@ -1,5 +1,9 @@
 @extends('template.frontEnd')
 
+@section('title')
+    Galerie
+@endsection
+
 @section('content')
     <script>
         // slide Top de la navBar
@@ -22,11 +26,9 @@
                 </div>
             @endforeach
         </div>
-
-
         @include('Slide.magasinSlide')
-
     </div>
+
 
     @include('menu.footer')
 @endsection

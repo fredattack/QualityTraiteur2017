@@ -14,12 +14,12 @@
     <div class="navbar-collapse collapse">
         <ul class="nav  navbar-nav" id="navBarMain">
             <li><a href="{{ route('index')}}">Home</a></li>
-            <li><a href="{{ route('magasin')}}">Notre magasin</a></li>
+            <li><a href="{{ route('galerie')}}">Galerie</a></li>
+            <li><a href="{{ route('guestBook')}}">Livre D'or</a></li>
             <li><a href="{{ route('contact')}}">Contact</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="navBarRight" >
-            {{--<div class="pull-left" id="ouvertureLabel"></div>--}}
             <li id="admin" style="background-color: #84255C">
                 <a href="{{ route('admin')}}">Admin</a>
             </li>

@@ -14,21 +14,14 @@
     <div class="navbar-collapse collapse">
         <ul class="nav  navbar-nav" id="navBarMain">
             <li><a href="{{ route('index')}}">Home</a></li>
-            <li><a href="{{ route('magasin')}}">Notre magasin</a></li>
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ route('guestBook')}}"></a>Livre D'or</li>
-                        <li><a href="#"></a>Itinéraire</li>
-                        <li><a href="{{ route('contact')}}"></a>Nous Contacter</li>
-                    </ul>
-            </li>
+            <li><a href="{{ route('galerie')}}">Galerie</a></li>
+            <li><a href="{{ route('guestBook')}}">Livre D'or</a></li>
+            <li><a href="{{ route('contact')}}">Contact</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right" id="navBarRight" >
-            {{--<div class="pull-left" id="ouvertureLabel"></div>--}}
             {{--se connecter - s'enregistrer --}}
         </ul>
     </div>
 
+</nav>

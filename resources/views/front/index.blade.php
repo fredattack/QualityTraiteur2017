@@ -1,5 +1,10 @@
 @extends('template.frontEnd')
 
+@section('title')
+    Page d'Accueil
+@endsection
+
+
 @section('content')
 
 <script>

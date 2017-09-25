@@ -1,12 +1,15 @@
 @extends('template.frontEnd')
+
 @section('title')
-    Home
+    Page d'acceuil
 @endsection
+
 @section('content')
 
-    {{--<div class="container"></div>--}}
+    <style>#footer{display: none;}</style>
     <script>
         initApp();
+        showAdvise();
     </script>
 
     <div class="container">
@@ -19,23 +22,23 @@
             @endforeach
         </div>
     </div>
-    @include('Slide.homeSlide')
-    <div class="container">
 
+    @include('Slide.homeSlide')
+
+    <div class="container">
 
         @php($nom=session()->get('HomePage'))
 
-        <button class="btn btn-primary-outline text-center btn-lg"
-                id="btnEnter" onclick="Enter()">Entrer
-        </button>
+        <button class="btn btn-primary-outline text-center btn-lg" id="btnEnter" onclick="Enter()">Entrer</button>
 
         <img src="{{asset("/image/$nom")}}" id="bg" alt="">
 
         @include('menu.menuBt')
+
         <div class="loader"></div>
+
         <div class="container" id="zoneProduit">
-            <div class="col-lg-12" id="listProduit">
-            </div>
+            <div class="col-lg-12" id="listProduit"></div>
         </div>
 
         <div class="container">
@@ -44,9 +47,6 @@
             </div>
         </div>
     </div>
-
-    <style>#footer{display: none;}</style>
-    <script>showAdvise();</script>
 
     @include('menu.footer')
 @endsection

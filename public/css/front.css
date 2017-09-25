@@ -134,15 +134,15 @@ transition-property: transform;
     /*height:30%;*/
 }
 #zoneProduit{
-    max-width: 70%;
+    max-width: 80%;
     color:#5e5e5e;
     background-color: #F6F6F6;
 
     /*Slide effect*/
-    -webkit-transition-duration: 1.5s;
-    -moz-transition-duration: 1.5s;
-    -o-transition-duration: 1.5s;
-    transition-duration: 1.5s;
+    -webkit-transition-duration: 4s;
+    -moz-transition-duration: 4s;
+    -o-transition-duration: 4s;
+    transition-duration: 4s;
     -webkit-transition-property: -webkit-transform;
     -moz-transition-property: -moz-transform;
     -o-transition-property: -o-transform;
@@ -188,7 +188,7 @@ transition-property: transform;
 .socialIcon{
     width:  3em;
     margin-left: 1em;
-    margin-right: 2em;
+    margin-right: 0em;
 }
 #footer{
     max-height: 5em;

@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-bottom navbar-inverse" id="footer">
     <div class="col-lg-12 col-xs-12 ">
         <div class="col-lg-2 col-xs-2">
-            <a href="#">
+            <a href="https://www.facebook.com/Quality-Traiteur-313346108852063" target="_blank">
                 <img class="socialIcon" src="image/facebook-logo-button.png">
             </a>
             <a href="#">

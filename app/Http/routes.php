@@ -21,7 +21,7 @@
 
 Route::get('/', ['uses'=>'InitController@index','as'=> 'home']);
 
-Route::get('/magasin', ['uses'=>'MagasinController@index','as'=> 'magasin']);
+Route::get('/galerie', ['uses'=>'MagasinController@index','as'=> 'galerie']);
 
 Route::get('/home',array('as'=>'index',function () {
 			return view('front/index');
