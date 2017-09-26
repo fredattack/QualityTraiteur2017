@@ -29,7 +29,7 @@
 
         @php($nom=session()->get('HomePage'))
 
-        <button class="btn btn-primary-outline text-center btn-lg" id="btnEnter" onclick="Enter()">Entrer</button>
+        <button  target="_blank" class="btn btn-primary-outline text-center btn-lg" id="btnEnter" onclick="Enter()">Entrer</button>
 
         <img src="{{asset("/image/$nom")}}" id="bg" alt="">
 
@@ -42,6 +42,10 @@
         </div>
 
         <div class="container">
+            {{--<button class="btn btn-primary-outline text-center btn-lg"  href="{{route('pdfview')}}">Télécharger la liste</button>--}}
+            {!! Form::open(['method' => 'GET', 'route' => ['pdfview']]) !!}
+            {!! Form::submit('Modifier', [ 'class' => 'btn btn-default ', 'onclick' => '']) !!}
+            {!! Form::close() !!}
             <div class="col-lg-12" id="zoneAdvise">
                 {{--zone affiche 3 avis par jquery--}}
             </div>

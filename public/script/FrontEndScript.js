@@ -165,8 +165,8 @@ function makeTableSandwich(container, ret) {
         }
         row += "</table>"
     }
-
-    row += "    <button class='btn btn-default pull-right' onclick='downloadFile()'>Télécharger la liste</button>";
+    // var laRoute = "URL::to{{route('pdfview')}}";
+    // row += "    <button class='btn btn-default pull-right' data-href="+laRoute+">Télécharger la liste</button>";
     window.console.log("makeTable finish");
 
     return container.append(row);

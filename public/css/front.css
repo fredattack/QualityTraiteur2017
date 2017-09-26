@@ -279,3 +279,11 @@ transition-property: transform;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+#pdfBody{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width:67%;
+}
+
+#pdfLogo {
+        width:50%}
