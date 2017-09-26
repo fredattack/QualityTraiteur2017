@@ -13,7 +13,6 @@ a:active{
 a{
     color:#5e5e5e;
     margin:auto;
-    /*text-align: center;*/
 }
 #navBar{
     opacity: 0.8;
@@ -22,7 +21,6 @@ a{
 .navbar{
 height: 4em;
 line-height: 4em;
-/*bottom:80%;*/
 
 /*Slide effect*/
 -webkit-transition-duration: 1.5s;
@@ -98,6 +96,7 @@ opacity: 0.7;
 }
 
 #slideAll{
+
 /*Slide effect*/
 -webkit-transition-duration: 2s;
 -moz-transition-duration: 2s;
@@ -123,16 +122,12 @@ transition-duration: 2s;
 transition-property: transform;
 }
 
-.titreMenuBt{
-/*margin-top: 2em;*/
-}
-
 
 #menuBt img{
     width:38%;
     margin: auto;
-    /*height:30%;*/
 }
+
 #zoneProduit{
     max-width: 80%;
     color:#5e5e5e;
@@ -193,14 +188,12 @@ transition-property: transform;
 #footer{
     max-height: 5em;
 }
+
 #footer h4, #footer p{
     margin-left: 0em;
     color: #FFFFFF;
     display: inline;
-
 }
-
-
 
 /* Contact*/
 #messageForm,#alertMessage{
@@ -224,7 +217,6 @@ transition-property: transform;
 }
 
 .commentBlock{
-    /*border: 1px solid #F6F6F6;*/
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -234,25 +226,26 @@ transition-property: transform;
     background-color: #F6F6F6;
     width: 75%;
 }
+
 #zoneComment{
     margin-bottom: 8em;
 }
+
 .commentBlock h4,.adviseCard h3,.adviseCard h4{
     display: inline;
     padding-bottom: 1em;
 }
+
 #zoneAdvise{
     position: relative;
-    /*margin-top: 2em;*/
     margin-bottom: 10em;
     min-height: 15em;
-    /*background-color: red;*/
 }
 
 .adviseCard{
     padding: 1em;
-    /*margin: 0.5em;*/
 }
+
 .textBlock{
     padding: 1em;
     border: 1px solid #5e5e5e;
@@ -263,10 +256,8 @@ transition-property: transform;
     background-color: #F6F6F6;
 }
 
-
 .loader {
     visibility:hidden;
-
     position: fixed;
     left:48%;
     top:74%;
