@@ -4,18 +4,18 @@
 
 </style>
 
+<a class="btn btn-danger" href="{{ route('pdfSandwich',['download'=>'pdf']) }}">Télécharger la liste</a>
 <div class="container" id="pdfBody">
 
     <br/>
-    <a class="btn btn-danger" href="{{ route('pdfview',['download'=>'pdf']) }}">Télécharger la liste</a>
-<hr>
+    {{--<a href="{{ route('pdfview',['download'=>'pdf']) }}">Download PDF</a>--}}
+    <hr>
+    <div class="col-lg-12">
     <div class="col-lg-6">
-        <img id="pdfLogo" src="image/QualityLogo.jpg">
+    <h1>QualityTraiteur</h1>        {{--<img id="pdfLogo" src="image/QualityLogo.jpg">--}}
     </div>
     <div class="col-lg-6">
-        <h3>
-            Quality Traiteur
-        </h3>
+
         <p>
             42 Avenue Reine Astrid
             4300 Waremme.
@@ -25,15 +25,17 @@
             Gsm : 0471/89.89.17
         </p>
     </div>
+    </div>
+    <br>
     <hr>
-    <h1>Nos Sandwiches</h1>
+    <h2>Nos Sandwiches</h2>
     <table class='table table-condensed'>
         <tr>
-            <th>No</th>
-            <th>Nom</th>
-            <th>Ingrédients</th>
-            <th class="prixTitre" style="width: 10%;text-decoration: underline">prix 1/3</th>
-            <th class="prixTitre" style="width: 10%;text-decoration: underline ">prix 1/2</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th class="prixTitre" style="width: 10%">Prix 1/3</th>
+            <th class="prixTitre" style="width: 10%">Prix 1/2</th>
 
         </tr>
 

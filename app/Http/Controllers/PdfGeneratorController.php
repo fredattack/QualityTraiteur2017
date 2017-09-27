@@ -15,7 +15,7 @@ class PdfGeneratorController extends Controller
 //    *
 //    * @return \Illuminate\Http\Response
 
-    public function pdfview(Request $request)
+    public function pdfSandwich(Request $request)
     {
         $data['sandwiche'] = \App\sandwiche::orderBy('id')->get();
         $sandwiches=$data['sandwiche'];
@@ -35,7 +35,7 @@ class PdfGeneratorController extends Controller
 
         if ($request->has('download')) {
             $pdf = PDF::loadView('pdf.pdfSandwich');
-            return $pdf->download('pdfview.pdf');
+            return $pdf->download('sandwichsQualityTraiteur.pdf');
         }
 //        var_dump($request);
 

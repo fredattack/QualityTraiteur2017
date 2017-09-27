@@ -19,6 +19,7 @@ class AdviseController extends Controller
 
       $adviseList =\App\Advise::all();
          $noteMoyenne=\App\Advise::avg('note');
+         $noteMoyenne=number_format((float)$noteMoyenne, 1, ',', '');
       return view('front.guestBook', compact(['adviseList','noteMoyenne']));
 
   }

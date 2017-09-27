@@ -21,7 +21,7 @@
 {{---------------------------------------
 -----------------------Les Photos--------
 -----------------------------------------}}
-        <div class="col-lg-7" id="photoContainer" >
+        <div class="col-lg-6" id="photoContainer" >
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 style="display: inline-block;">Photos</h3>
@@ -35,41 +35,41 @@
                         @if($role->groupe==1)
                 @php($image=\App\Photo::where('role_id', $role->id)->get()->first())
                 <div class="col-lg-4">
-                    <div class="text-center"><h4>{{$role->nom}}</h4></div>
+                    <div class="text-center"><h5>{{$role->nom}}</h5></div>
                     @if($image!=null)
-                    <div><img src="image/{{$image['nom']}}" width="189px" height="126px"></div>
+                    <div><img src="image/{{$image['nom']}}"></div>
                     @else
-                    <div><img src="image/QualityLogo.jpg" width="189px" height="126px"></div>
+                    <div><img src="image/QualityLogo.jpg" ></div>
                     @endif
                 </div>
                     @elseif($role->groupe==2)
                         @php($image=\App\Photo::where('role_id', $role->id)->get()->first())
                         <div class="col-lg-4">
-                            <div class="text-center"><h4>{{$role->nom}}</h4></div>
+                            <div class="text-center"><h5>{{$role->nom}}</h5></div>
                             @if($image!=null)
-                                <div><img src="image/{{$image['nom']}}" width="189px" height="126px"></div>
+                                <div><img src="image/{{$image['nom']}}" ></div>
                             @else
-                                <div><img src="image/QualityLogo.jpg" width="189px" height="126px"></div>
+                                <div><img src="image/QualityLogo.jpg"></div>
                             @endif
                         </div>
                     @elseif ($role->groupe==3)
                                 @php($image=\App\Photo::where('role_id', $role->id)->get()->first())
                                 <div class="col-lg-4">
-                                    <div class="text-center"><h4>{{$role->nom}}</h4></div>
+                                    <div class="text-center"><h5>{{$role->nom}}</h5></div>
                                     @if($image!=null)
-                                        <div><img src="image/{{$image['nom']}}" width="189px" height="126px"></div>
+                                        <div><img src="image/{{$image['nom']}}" ></div>
                                     @else
-                                        <div><img src="image/QualityLogo.jpg" width="189px" height="126px"></div>
+                                        <div><img src="image/QualityLogo.jpg" ></div>
                                     @endif
                                 </div>
                         @elseif ($role->groupe==4)
                             @php($image=\App\Photo::where('role_id', $role->id)->get()->first())
                             <div class="col-lg-4">
-                                <div class="text-center"><h4>{{$role->nom}}</h4></div>
+                                <div class="text-center"><h5>{{$role->nom}}</h5></div>
                                 @if($image!=null)
-                                    <div><img src="image/{{$image['nom']}}" width="189px" height="126px"></div>
+                                    <div><img src="image/{{$image['nom']}}" ></div>
                                 @else
-                                    <div><img src="image/QualityLogo.jpg" width="189px" height="126px"></div>
+                                    <div><img src="image/QualityLogo.jpg" ></div>
                                 @endif
                             </div>
                     @endif
@@ -81,7 +81,7 @@
 ----------------Les horaires-----------
 ----------------------------------------}}
 
-        <div class="col-lg-5" id="horaireContainer">
+        <div class="col-lg-6" id="horaireContainer">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3>Horaires</h3>
@@ -103,8 +103,11 @@
                 </div>
             </div>
         </div>
-{{------------------les Notes-----------------------}}
-        <div class="col-lg-8"  id="noteContainer">
+
+            {{-------------------------------
+            ------------les Notes------------
+            ---------------------------------}}
+    <div class="col-lg-6"  id="noteContainer">
             {{--create--}}
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -123,7 +126,7 @@
                             {!! $errors->first('text', '<small class="help-block">:message</small>') !!}
                         </div>
                         <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
-                            {!! Form::textarea('texte', null, ['class' => 'form-control', 'placeholder' => 'Le text']) !!}
+                            {!! Form::textarea('texte', null, ['class' => 'form-control', 'placeholder' => 'Le text','size' => '50x3']) !!}
                             {!! $errors->first('text', '<small class="help-block">:message</small>') !!}
                         </div>
 
@@ -142,7 +145,7 @@
                     <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
                         {{ Form::label('page', 'Sur quelle page?',['class' => 'mylabel']) }}
 
-                        {{ Form::select('page', ['Toutes les pages','Home', 'Magasin','Contact'],'animal',['class' => 'form-control']) }}
+                        {{ Form::select('page', ['Toutes les pages','Home', 'gallerie','Livre d\'or','Contact'],'',['class' => 'form-control']) }}
 
                         </div>
 
@@ -186,11 +189,13 @@
                     </table>
                     </div>
                 </div>
-
-                        </div>
+            </div>
         </div>
-
     </div>
+
+    {{-------------------------
+    -----------Users----------------
+    ---------------------------}}
 
         <div class="col-lg-5"  id="userContainer">
             <div class="panel panel-default">
@@ -230,6 +235,11 @@
                 </div>
                 </div>
         </div>
+
+
+      {{-------------------------
+      -----------Emails----------------
+      ---------------------------}}
         <div class="col-lg-7">
             <div class="panel-default">
                 <div class="panel-heading">
@@ -239,16 +249,17 @@
                 </div>
             </div>
         </div>
-                <div class="col-lg-12" >
-                    <div class="panel-default">
-                        <div class="panel-heading">
-                            <h3>Google Analytics</h3>
-                        </div>
-                        <div class="panel-body">
-                        </div>
-                    </div>
-        </div>
+
+        <div class="col-lg-12" >
+            <div class="panel-default">
+                <div class="panel-heading">
+                    <h3>Google Analytics</h3>
+                </div>
+                <div class="panel-body">
+                </div>
             </div>
+        </div>
+</div>
 
             <script>
             function PassVal(res)

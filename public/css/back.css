@@ -1,5 +1,6 @@
 body{
-    background-color:#f7f7f7;
+    background-color:darkgrey;
+    color: black;
 }
 
 
@@ -33,6 +34,7 @@ body{
     background-color: #84255C;
 }
 
+
 .navbar-custom .navbar-brand {
     color:#eeeeee;
 }
@@ -54,5 +56,10 @@ body{
 }
 
 #photoContainer,#horaireContainer,#userContainer{
-    padding: 2em;
+    padding: 1em;
+}
+
+#photoContainer img{
+    width:151px;
+    height:100px
 }

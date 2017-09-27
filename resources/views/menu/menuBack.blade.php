@@ -11,7 +11,7 @@
       <li><a href="{{ route('admin.sandwiche.index') }}">Sandwiches</a></li>
       <li><a href="{{ route('admin.platprepare.index') }}">comptoirs</a></li>
       <li><a href="{{ route('admin.buffet.index') }}">buffets</a></li>
-      <li><a href="{{ route('admin.salade.index') }}">Salade</a></li>
+      {{--<li><a href="{{ route('admin.salade.index') }}">Salade</a></li>--}}
       <li><a href="{{ route('admin.photo.index') }}">Photo</a></li>
 
   </ul>

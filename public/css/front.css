@@ -129,6 +129,7 @@ transition-property: transform;
 }
 
 #zoneProduit{
+    height: 0;
     max-width: 80%;
     color:#5e5e5e;
     background-color: #F6F6F6;
@@ -280,10 +281,18 @@ transition-property: transform;
     100% { transform: rotate(360deg); }
 }
 
+/*PDF*/
+
+#btnSandPDF{
+    visibility: hidden;
+
+}
+
 #pdfBody{
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     width:67%;
 }
+
 
 #pdfLogo {
         width:50%}

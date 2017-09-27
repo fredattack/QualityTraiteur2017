@@ -107,8 +107,8 @@ function hideSlide() {
 }
 
 function listSandwich() {
+
     window.console.log("listProduit in");
-    $('.loader').css('visibility','visible');
 
     $.get('nossandwiches', function (ret) {
         console.log(ret);
@@ -123,12 +123,10 @@ function listSandwichCallBack(ret) {
     $('#listProduit').empty();
     $('#listProduit').hide();
     $('#MainSlide').empty();
-
+    makeTableSandwich($("#listProduit"), ret);
     hideSlide();
 
-    makeTableSandwich($("#listProduit"), ret);
 }
-
 
 function makeTableSandwich(container, ret) {
     window.console.log("makeTable start");
@@ -138,7 +136,6 @@ function makeTableSandwich(container, ret) {
     var listFamille = ret['lesFamilles'];
     var lesComposants = ret['lesComposants'];
     var listProduit = ret['lesSandwiches'];
-// alert(typeof(listFamille));
     var row = "<h1>Nos Sandwiches</h1>" +
         "<table class='table table-condensed'>" +
         '<tr>' +
@@ -165,9 +162,13 @@ function makeTableSandwich(container, ret) {
         }
         row += "</table>"
     }
-    // var laRoute = "URL::to{{route('pdfview')}}";
-    // row += "    <button class='btn btn-default pull-right' data-href="+laRoute+">Télécharger la liste</button>";
     window.console.log("makeTable finish");
+
+    setTimeout(function () {
+        $('.loader').css('visibility','visible');
+        $('#zoneProduit').css('height', '100%');
+        $('#btnSandPDF').css('visibility', 'visible');
+    },1750);
 
     return container.append(row);
 }
@@ -178,6 +179,7 @@ function makeTableSandwich(container, ret) {
 
 function listPlatPrepare() {
     window.console.log("listProduit in");
+    $('#btnSandPDF').css('visibility','hidden');
     $('.loader').css('visibility','visible');
 
     $.get('nosplatsprepare', function (ret) {
@@ -191,10 +193,9 @@ function listPlatPrepareCallBack(ret) {
 
     $('#listProduit').empty();
     $('#MainSlide').empty();
+    $('#zoneProduit').css('height','100%');
     makeTablePlatPrepare($("#listProduit"), ret);
     hideSlide();
-
-    // $('#listProduit').show();
 }
 
 function makeTablePlatPrepare(container, ret) {
@@ -233,7 +234,6 @@ function makeTablePlatPrepare(container, ret) {
         row += "</table>"
     }
 
-    row += "    <button class='btn btn-default pull-right' onclick='downloadFile()'>Télécharger la liste</button>";
     window.console.log("makeTable finish");
 
     return container.append(row);
@@ -245,6 +245,8 @@ function makeTablePlatPrepare(container, ret) {
 
 function listBuffet() {
     window.console.log("listProduit in");
+    $('#btnSandPDF').css('visibility','hidden');
+
     $('.loader').css('visibility','visible');
 
     $.get('nosBuffets', function (ret) {
@@ -258,10 +260,9 @@ function listBuffetCallBack(ret) {
 
     $('#listProduit').empty();
     $('#MainSlide').empty();
+    $('#zoneProduit').css('height','100%');
     makeTableBuffet($("#listProduit"), ret);
     hideSlide();
-
-    // $('#listProduit').show();
 }
 
 function makeTableBuffet(container, ret) {
@@ -295,7 +296,6 @@ function makeTableBuffet(container, ret) {
             '</div>'+
             '</div>';
     }
-    row += "    <button class='btn btn-default pull-right' onclick='downloadFile()'>Télécharger la liste</button>";
 
     row+=   '<div class="col-lg-12"><div class="alert alert-warning">'+
             '<strong>Attention!</strong> la composition et le prix des buffets sont donnés à titre indicatif.'+
@@ -363,18 +363,6 @@ function controleListFamille(listFamille, listProduit) {
 **********Divers*************
  */
 
-// function resetAffichage() {
-//     $( "#zoneProduit" ).css("transform","translateY(39em)");
-//     setTimeout('    $( "#menuBt" ).css("transform","translateX(-7em)");',1000);
-//     setTimeout("$('#listProduit').hide();",1000);
-// }
-
-function downloadFile() {
-    var doc = new jsPDF();
-    doc.fromHtml($('#listProduit').get(0),20,30,{
-        width:500});
-    doc.save('a4.pdf')
-}
 
 function showAdvise(){
     window.console.log('showAdvise');
@@ -397,8 +385,8 @@ function fillZoneAdvise(ret) {
         '<div class="card-block">' +
          '<div class="card-text textBlock" >' +
                 '<div class="headCard"><h3>' + listAdvise[i].userName +' </h3> de <h4>'+listAdvise[i].localite+'</h4> '+
-                '<input id="' + listAdvise[i].id +'" value="' + listAdvise[i].note +'" class="rating"   data-size="xs" ></div><hr>'+   //The Star Rating input (DisplayOnly)
-                '<div><p>' + listAdvise[i].message + '</p></div>' +
+                // '<input id="' + listAdvise[i].id +'" value="' + listAdvise[i].note +'" class="rating rating-xs"   data-size="xs" >'+   //The Star Rating input (DisplayOnly)
+                '</div><hr><div><p>' + listAdvise[i].message + '</p></div>' +
         ' </div>' +
         '</div>' +
         '</div>' +

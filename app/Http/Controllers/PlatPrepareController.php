@@ -56,9 +56,9 @@ class PlatPrepareController extends Controller
   public function store(Request $request)
   {
       $this->validate($request, [
-          'nom' => 'required',
-          'prix' => 'required',
-          'description'=>'required',
+          'nom' => 'bail|required|unique:platsprepares|max:100',
+          'prix' => 'bail|required|numeric',
+          'description'=>'bail|required|max:145',
           'id_famille'=>'required',
           'id_uniteVente' => 'required'
       ]);
@@ -141,9 +141,10 @@ class PlatPrepareController extends Controller
       $lePlat = \App\platPrepare::findOrFail($id);
 
       $this->validate($request, [
-          'nom' => 'required',
-          'prix' => 'required',
-          'description'=>'required',
+          'nom' => 'bail|required|unique:platsprepares|max:100',
+          'prix' => 'bail|required|numeric',
+
+          'description'=>'bail|required|max:145',
           'id_famille'=>'required',
           'id_uniteVente' => 'required'
       ]);

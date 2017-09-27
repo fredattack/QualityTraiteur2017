@@ -20,6 +20,7 @@
                 Gsm : 0471/89.89.17
             </p>
         </div>
+        {{----}}{{-- @TODO create modal with horaires  --}}
         <div class="col-lg-4 col-xs-4" id="ouvertureLabel">
         </div>
     </div>

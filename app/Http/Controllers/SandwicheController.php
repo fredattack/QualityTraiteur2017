@@ -37,11 +37,10 @@ class SandwicheController extends Controller
         $arr['lesSandwiches'] = $sandwiches;
         $arr['lesFamilles'] = $familleSandwiches;
         $arr['lesComposants'] = $compList;
-
+//
         return response($arr);
 //    return view('Sandwiche.front.index', compact(['sandwiches','familleSandwiches']));
     }
-
 
     public function create()
     {
@@ -54,10 +53,10 @@ class SandwicheController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nom' => 'required',
-            'prixTiers' => 'required|numeric',
-            'familleSandwiche_id' =>'required',
-            'prixDemi' => 'required|numeric'
+            'nom' => 'bail|required|unique:sandwiches|max:75',
+            'prixTiers' => 'bail|required|numeric',
+            'familleSandwiche_id' =>'bail|required',
+            'prixDemi' => 'bail|required|numeric'
         ]);
 
         $input = $request->all();
@@ -114,9 +113,10 @@ class SandwicheController extends Controller
         $sandwiche = \App\Sandwiche::findOrFail($id);
 
         $this->validate($request, [
-            'nom' => 'required',
-            'prixTiers' => 'required|numeric',
-            'prixDemi' => 'required|numeric'
+            'nom' => 'bail|required|unique:sandwiches|max:75',
+            'prixTiers' => 'bail|required|numeric',
+            'familleSandwiche_id' =>'bail|required',
+            'prixDemi' => 'bail|required|numeric'
         ]);
 
         $input = $request->all();

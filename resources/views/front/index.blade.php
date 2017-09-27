@@ -29,6 +29,9 @@
 
         <div class="loader"></div>
         <div class="container" id="zoneProduit">
+            {!! Form::open(['method' => 'GET', 'route' => ['pdfSandwich']]) !!}
+            {!! Form::submit('Telecharger la Liste', [ 'class' => 'btn btn-default ', 'target' => '_blank','id'=>'btnSandPDF']) !!}
+            {!! Form::close() !!}
             <div class="col-lg-12" id="listProduit">
                 <script>
                     // slide Top de la navBar

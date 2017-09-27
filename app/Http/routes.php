@@ -44,7 +44,7 @@ Route::get('test',['uses'=> 'GeneralController@generateImage', 'as'=>'test']);
 
 Route::resource('advise', 'AdviseController');
 
-Route::get('pdfview',array('as'=>'pdfview','uses'=>'PdfGeneratorController@pdfview'));
+Route::get('pdfSandwich',array('as'=>'pdfSandwich','uses'=>'PdfGeneratorController@pdfSandwich'));
 
 
 /*

@@ -47,9 +47,9 @@ class BuffetController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nom' => 'bail|required',
-            'prix' => 'bail|required',
-            'description' => 'bail|required'
+            'nom' => 'bail|required|unique:buffets|max:100',
+            'prix' => 'bail|required|numeric',
+            'description' => 'bail|required|max:1000',
         ]);
 //        var_dump($request);
 
@@ -104,6 +104,13 @@ class BuffetController extends Controller
      */
     public function update($id,Request $request)
     {
+
+        $this->validate($request, [
+            'nom' => 'bail|required|unique:buffets|max:100',
+            'prix' => 'bail|required|numeric',
+            'description' => 'bail|required|max:1000',
+        ]);
+
         $buffet = \App\Buffet::findOrFail($id);
         $input=$request->all();
         $buffet->fill($input)->save();
