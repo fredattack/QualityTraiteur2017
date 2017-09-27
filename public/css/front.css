@@ -175,7 +175,7 @@ transition-property: transform;
 
 #ouvertureLabel{
     color: #FFFFFF;
-    font-size: large;
+    font-size: medium;
     font-weight: 100;
     margin-top: 0;
 
@@ -194,6 +194,13 @@ transition-property: transform;
     margin-left: 0em;
     color: #FFFFFF;
     display: inline;
+}
+
+
+
+#ouvertureLabel a{
+    color: white;
+    cursor: pointer;
 }
 
 /* Contact*/

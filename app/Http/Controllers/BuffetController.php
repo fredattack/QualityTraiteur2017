@@ -68,7 +68,7 @@ class BuffetController extends Controller
         $leNouveauBuffet = \App\Buffet::create($buffet);
 
 //        return var_dump($nomDuRole);
-        return redirect('admin/buffet')->withOk("Le Buffet " . $leNouveauBuffet->nom . " a été ajouté.");
+        return redirect('admin/buffet')->with('message',"Le Buffet " . $leNouveauBuffet->nom . " a été ajouté.");
 
     }
 
@@ -106,7 +106,7 @@ class BuffetController extends Controller
     {
 
         $this->validate($request, [
-            'nom' => 'bail|required|unique:buffets|max:100',
+            'nom' => 'bail|required|max:100',
             'prix' => 'bail|required|numeric',
             'description' => 'bail|required|max:1000',
         ]);
@@ -115,7 +115,7 @@ class BuffetController extends Controller
         $input=$request->all();
         $buffet->fill($input)->save();
 
-        return redirect('admin/buffet')->withOk("Le buffet " . $buffet->nom . " a été modifié.");
+        return redirect('admin/buffet')->with('message',"Le buffet " . $buffet->nom . " a été modifié.");
     }
 
     /**

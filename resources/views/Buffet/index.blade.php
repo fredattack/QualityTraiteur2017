@@ -7,6 +7,12 @@
 
 
 @section('content')
+    @if(session()->has('message'))
+
+        <div class="alert alert-success">
+            {{ session()->get('message') }}
+        </div>
+    @endif
     <div class="container">
         <h1>Les Buffets</h1>
         {!! Form::open(['method' => 'GET', 'route' => 'admin.buffet.create']) !!}

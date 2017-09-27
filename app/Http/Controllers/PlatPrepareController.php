@@ -141,7 +141,7 @@ class PlatPrepareController extends Controller
       $lePlat = \App\platPrepare::findOrFail($id);
 
       $this->validate($request, [
-          'nom' => 'bail|required|unique:platsprepares|max:100',
+          'nom' => 'bail|required|max:100',
           'prix' => 'bail|required|numeric',
 
           'description'=>'bail|required|max:145',

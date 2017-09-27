@@ -47,12 +47,12 @@ function determineOuverture(ret) {
                 ',  heure: ' + time + ', start: ' + ret[i].startTime +
                 ', end: ' + ret[i].endTime);
             if (ret[i].startTime == ret[i].endTime) {
-                row += 'Nous sommes actuellement <strong>Fermé</strong>';
+                row += '<a data-toggle="modal" data-target="#myModal">Nous sommes actuellement <strong>Fermé</strong></a>a>';
                 window.console.log('jour de fermeture');
             }
             else {
                 if (time > ret[i].startTime && time < ret[i].endTime) {
-                    row += "Nous sommes actuellement <strong>Ouvert</strong> jusqu'à " + ret[i].endTime;
+                    row += "<a data-toggle='modal' data-target='#myModal'>Nous sommes actuellement <strong>Ouvert</strong> jusqu'à " + ret[i].endTime+"</a>";
                     window.console.log('dans les heures');
                 }
                 else {

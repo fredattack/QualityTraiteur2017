@@ -82,7 +82,7 @@
     </script>
         @yield('menuBt')
         @yield('content')
-
+@include('front.workHoursModale')
 
     </body>
     <footer>

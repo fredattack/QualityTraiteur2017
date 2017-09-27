@@ -27,7 +27,7 @@
                @endif
         </div>
             <div class="col-lg-12" id="messageForm">
-
+                <h2>Laissez votre message:</h2>
                 {!! Form::open(['url' => 'send', 'method' => 'get', 'role' => 'form']) !!}
 
 
