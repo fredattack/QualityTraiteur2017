@@ -31,7 +31,7 @@ function getHours() {
     $.get('nosheures', function (ret) {
         console.log('gethours ajax in');
         determineOuverture(ret);
-        console.log(ret);
+        console.log('workhour ajax : '+ret);
     });
 }
 
@@ -47,16 +47,18 @@ function determineOuverture(ret) {
                 ',  heure: ' + time + ', start: ' + ret[i].startTime +
                 ', end: ' + ret[i].endTime);
             if (ret[i].startTime == ret[i].endTime) {
-                row += '<a data-toggle="modal" data-target="#myModal">Nous sommes actuellement <strong>Fermé</strong></a>a>';
+                row += '<a data-toggle="modal" data-target="#workHoursModal">Nous sommes actuellement <strong>Fermé</strong></a>';
+
                 window.console.log('jour de fermeture');
             }
             else {
                 if (time > ret[i].startTime && time < ret[i].endTime) {
-                    row += "<a data-toggle='modal' data-target='#myModal'>Nous sommes actuellement <strong>Ouvert</strong> jusqu'à " + ret[i].endTime+"</a>";
+                    row += '<a data-toggle="modal" data-target="#workHoursModal">Nous sommes actuellement <strong>Ouvert</strong> jusqu\'à ' + ret[i].endTime+'</a>';
+
                     window.console.log('dans les heures');
                 }
                 else {
-                    row += 'Nous sommes actuellement <strong>Fermé</strong>';
+                    row += '<a data-toggle="modal" data-target="#workHoursModal">Nous sommes actuellement <strong>Fermé</strong></a>';
                     window.console.log('en dehors des heures');
                 }
             }
@@ -109,6 +111,7 @@ function hideSlide() {
 function listSandwich() {
 
     window.console.log("listProduit in");
+    $('.loader').css('visibility','visible');
 
     $.get('nossandwiches', function (ret) {
         console.log(ret);
@@ -136,36 +139,41 @@ function makeTableSandwich(container, ret) {
     var listFamille = ret['lesFamilles'];
     var lesComposants = ret['lesComposants'];
     var listProduit = ret['lesSandwiches'];
+
     var row = "<h1>Nos Sandwiches</h1>" +
-        "<table class='table table-condensed'>" +
-        '<tr>' +
-        '<td style="width: 30%"></td>' +
-        '<td style="width: 50%"></td>' +
-        '<td class="prixTitre" style="width: 10%;text-decoration: underline">prix 1/3</td>' +
-        '<td class="prixTitre" style="width: 10%;text-decoration: underline ">prix 1/2</td>' +
-        '</tr>' +
-        '</table>';
+        '<div class="col-lg-12 col-xs-12">' +
+        '<div class="col-lg-8 col-xs-6"></div>' +
+        '<div class=" col-lg-2 col-xs-3 prixTitre pull-right" >1/2 </div>' +
+        '<div class="col-lg-2 col-xs-3 prixTitre pull-right" >1/3</div>' +
+        '</div>';
 
     for (i = 0; i < listFamille.length; i++) {
-        row += "<h3 style='text-decoration: underline'>Les " + listFamille[i].nom + " :</h3>";
-        row += "<table class='table table-condensed col-lg-12'>";
+        row += "<h3 style='text-decoration: underline'>Les " + listFamille[i].nom + "&nbsp;:</h3>";
+        row += '<div class="col-lg-12 col-xs-12" style="padding-left: 0; padding-right: 0">';
 
         for (cpt = 0; cpt < listProduit.length; cpt++) {
             if (listProduit[cpt].familleSandwiche_id === listFamille[i].id) {
-                row += "<tr>" +
-                    "<td style='width: 30%'><h4>" + listProduit[cpt].nom + "</h4></td>" +
-                    "<td style='width: 50%'><h6>" + lesIngredients(lesComposants[listProduit[cpt].id]) + " </h6></td>" +
-                    "<td class='tdPrix' style='width: 10%'><p>" + listProduit[cpt].prixTiers + "€</p></td>" +
-                    "<td class='tdPrix' style='width: 10%'><p>" + listProduit[cpt].prixDemi + "€</p></td>" +
-                    "</tr>";
+                if(listProduit[cpt].prixTiers == 0.00){
+                    var prix = '';
+
+                }
+                else{
+                    var prix = listProduit[cpt].prixTiers+ "€";
+
+                }
+                row += '<div class="col-lg-12 col-xs-12"  style="padding-left: 0; padding-right: 0">';
+                row +="<div class='col-lg-4 col-xs-12' style='padding-left: 0; padding-right: 0'><h4>" + listProduit[cpt].nom + " </h4></div>" +
+                    "<div class='col-lg-4 col-xs-12'><p>" + lesIngredients(lesComposants[listProduit[cpt].id]) + " </p></div>" +
+                    "<div class='col-lg-2 col-xs-6 tdPrix' ><p>" + prix + " </p></div>" +
+                    "<div class='col-lg-2 col-xs-6 tdPrix' ><p>" + listProduit[cpt].prixDemi + " €</p></div>";
+                row += "</div>";
             }
         }
-        row += "</table>"
+        row += "</div> ";
     }
     window.console.log("makeTable finish");
 
     setTimeout(function () {
-        $('.loader').css('visibility','visible');
         $('#zoneProduit').css('height', '100%');
         $('#btnSandPDF').css('visibility', 'visible');
     },1750);
@@ -208,18 +216,18 @@ function makeTablePlatPrepare(container, ret) {
     var listProduit = ret['lesPlats'];
     listFamille = controleListFamille(listFamille, listProduit);
 
-    var row = "<h1>Aujourd'hui dans nos comptoires</h1>" +
+    var row = "<h1>Aujourd'hui dans nos comptoirs</h1>" +
         "<table class='table table-condensed'>" +
         '<tr>' +
         '<td style="width: 30%"><h3></h3></td>' +
         '<td style="width: 50%"><h4></h4></td>' +
-        '<td class="prixTitre" style="width: 20%;text-decoration: underline ">Prix</td>' +
+        // '<td class="prixTitre" style="width: 20%;text-decoration: underline ">Prix</td>' +
         '</tr>' +
         '</table>';
 
     for (i = 0; i < listFamille.length; i++) {
 
-        row += "<h3 style='text-decoration: underline'>" + listFamille[i].nom + " :</h3>";
+        row += "<h3 style='text-decoration: underline'>" + listFamille[i].nom + "&nbsp;:</h3>";
         row += "<table class='table table-condensed col-lg-12'>";
 
         for (cpt = 0; cpt < listProduit.length; cpt++) {
@@ -227,7 +235,7 @@ function makeTablePlatPrepare(container, ret) {
                 row += "<tr>" +
                     "<td style='width: 30%'><h4>" + listProduit[cpt].nom + "</h4></td>" +
                     "<td style='width: 40%'><h6>" + listProduit[cpt].description + "</h6></td>" +
-                    "<td  style='width: 20%'><div ><p class='tdPrix' style='display: inline-block'>" + listProduit[cpt].prix + "€</p><p  style='display: inline-block'>/" + lUnites(lesUnites, listProduit[cpt].id_uniteVente) + "</p></div></td>" +
+                    // "<td  style='width: 20%'><div ><p class='tdPrix' style='display: inline-block'>" + listProduit[cpt].prix + "€</p><p  style='display: inline-block'>/" + lUnites(lesUnites, listProduit[cpt].id_uniteVente) + "</p></div></td>" +
                     "</tr>";
             }
         }
@@ -315,7 +323,7 @@ function lesIngredients(list) {
     var retVal = "";
     for (i = 0; i < list.length; i++) {
         if (i != list.length - 1)
-            retVal += list[i].nom + ",";
+            retVal += list[i].nom + ", ";
         else
             retVal += list[i].nom + ".";
     }

@@ -13,8 +13,11 @@
 
 
 				{!! Form::open(array('route' => 'advise.store', 'method' => 'POST')) !!}
-
+				<div class="form-group {!! $errors->has('note') ? 'has-error' : '' !!}">
 				<input id="input-id" name="note"  class="rating" min=0 max=5 step=0.5 data-size="xs" style="float:right">
+					{!! $errors->first('note', '<small class="help-block">:message</small>') !!}
+
+				</div>
 				<br>
 
 				<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
@@ -38,7 +41,7 @@
 				</div>
 
 
-				{!! Form::submit('Envoyer', ['class' => 'btn btn-default']) !!}
+				{!! Form::submit('Envoyer', ['class' => 'btn btn-default','id'=>'modalBtn']) !!}
 
 				{!! Form::close() !!}
 

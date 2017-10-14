@@ -25,7 +25,7 @@ Modifier un sandwiche
                     </div>
                     <div class="form-group">
                         {{Form::label('famille', 'Famille de sandwiche',['class'=>'col-lg-4'])}}
-                        {{ Form::select('familleSandwiches', $familleSandwiches,['class'=>'form-control col-lg-4']) }}
+                        {{ Form::select('familleSandwiches', $familleSandwiches,$sandwiche->familleSandwiche_id,['class'=>'form-control col-lg-4']) }}
                         {!! link_to_route('IngredientInModel', 'Ajouter une famille', ['class' => 'btn btn-success btn-block col-lg-4','style'=>'margin-left=20px']) !!}
                     </div>
                     <div class="form-group {!! $errors->has('prixTiers') ? 'has-error' : '' !!}">

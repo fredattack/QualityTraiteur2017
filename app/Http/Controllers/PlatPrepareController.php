@@ -18,21 +18,19 @@ class PlatPrepareController extends Controller
   public function index()
   {
       $listePlatPrepares=$this->listesPlatPrepares();
-      $listeFamillePlat =\App\Familleplat::lists('nom', 'id');
+      $listeFamillePlat =\App\FamillePlat::lists('nom', 'id');
       $listeUniteVente =\App\UniteVente::lists('nom','id');
-      return view('platprepare.index', compact(['listePlatPrepares','listeFamillePlat','listeUniteVente']));
+      return view('PlatPrepare.index', compact(['listePlatPrepares','listeFamillePlat','listeUniteVente']));
   }
 
     public function frontIndex()
     {
         $arr= array();
-
-        $arr['lesPlats']=\App\platPrepare::where('publier','=','1')->orderBy('id_famille')->orderBy('nom')->get();
+        $arr['lesPlats']=\App\PlatPrepare::where('publier','=','1')->orderBy('id_famille')->orderBy('nom')->get();
         $arr['lesFamilles']=\App\FamillePlat::orderBy('id')->get();
         $arr['lesUnitesDeVente']=\App\UniteVente::orderBy('id')->get();
 
         return response($arr);
-//        return view('platprepare.front.index', compact(['listePlatPrepares','listeFamillePlat']));
     }
   /**
    * Show the form for creating a new resource.
@@ -41,10 +39,10 @@ class PlatPrepareController extends Controller
    */
   public function create()
   {
-      $listeUnitesVente =\App\uniteVente::orderBy('nom')->lists('nom', 'id');
+      $listeUnitesVente =\App\UniteVente::orderBy('nom')->lists('nom', 'id');
 
-      $listeFamillePlat =\App\Familleplat::orderBy('nom')->lists('nom', 'id');
-      return view('platprepare.create',compact(['listeUnitesVente','listeFamillePlat' ]));
+      $listeFamillePlat =\App\FamillePlat::orderBy('nom')->lists('nom', 'id');
+      return view('PlatPrepare.create',compact(['listeUnitesVente','listeFamillePlat' ]));
     
   }
 
@@ -56,9 +54,9 @@ class PlatPrepareController extends Controller
   public function store(Request $request)
   {
       $this->validate($request, [
-          'nom' => 'bail|required|unique:platsprepares|max:100',
+          'nom' => 'bail|required|unique:platsPrepares|max:100',
           'prix' => 'bail|required|numeric',
-          'description'=>'bail|required|max:145',
+          'description'=>'bail|max:145',
           'id_famille'=>'required',
           'id_uniteVente' => 'required'
       ]);
@@ -68,7 +66,7 @@ class PlatPrepareController extends Controller
 //      return var_dump($Plat);
 
       //insert le nouveau plat
-      \App\platPrepare::create($Plat);
+      \App\PlatPrepare::create($Plat);
 
       return redirect('admin/platprepare')->withOk("Le Plat " . $request->input('name') . " a été modifié.");
 
@@ -84,13 +82,13 @@ class PlatPrepareController extends Controller
    */
   public function show($id)
   {
-      $lePlat = \App\platPrepare::findOrFail($id);
+      $lePlat = \App\PlatPrepare::findOrFail($id);
 
-      $listeUnitesVente=\App\uniteVente::orderBy('nom')->lists('nom', 'id');
+      $listeUnitesVente=\App\UniteVente::orderBy('nom')->lists('nom', 'id');
 
-      $listeFamillePlat =\App\Familleplat::orderBy('nom')->lists('nom', 'id');
+      $listeFamillePlat =\App\FamillePlat::orderBy('nom')->lists('nom', 'id');
 
-      return view('platprepare.show',  compact(['lePlat','listeUnitesVente','listeFamillePlat']));
+      return view('PlatPrepare.show',  compact(['lePlat','listeUnitesVente','listeFamillePlat']));
   }
 
   /**
@@ -102,19 +100,19 @@ class PlatPrepareController extends Controller
   public function edit($id)
   {
       //recuperer les infos sur la salade choisie.
-      $lePlat = \App\platPrepare::findOrFail($id);
+      $lePlat = \App\PlatPrepare::findOrFail($id);
 
-      $listeUnitesVente=\App\uniteVente::orderBy('nom')->lists('nom', 'id');
+      $listeUnitesVente=\App\UniteVente::orderBy('nom')->lists('nom', 'id');
 
-      $listeFamillePlat =\App\Familleplat::orderBy('nom')->lists('nom', 'id');
+      $listeFamillePlat =\App\FamillePlat::orderBy('nom')->lists('nom', 'id');
 
-      return view('platprepare.edit',  compact(['lePlat','listeUnitesVente','listeFamillePlat']));
+      return view('PlatPrepare.edit',  compact(['lePlat','listeUnitesVente','listeFamillePlat']));
   }
 
   public function publierPlat(Request $request)
   {
       $id = $request->input('id');
-      $lePlat = \App\platPrepare::findOrFail($id);
+      $lePlat = \App\PlatPrepare::findOrFail($id);
 //
       if($lePlat->publier==1)
       {
@@ -138,13 +136,13 @@ class PlatPrepareController extends Controller
    */
   public function update(Request $request,$id)
   {
-      $lePlat = \App\platPrepare::findOrFail($id);
+      $lePlat = \App\PlatPrepare::findOrFail($id);
 
       $this->validate($request, [
           'nom' => 'bail|required|max:100',
           'prix' => 'bail|required|numeric',
 
-          'description'=>'bail|required|max:145',
+          'description'=>'bail|max:145',
           'id_famille'=>'required',
           'id_uniteVente' => 'required'
       ]);
@@ -169,7 +167,7 @@ class PlatPrepareController extends Controller
       $lePLat->delete();
 
 
-      return redirect()->route('admin/platprepare');
+      return redirect()->route('admin.platprepare.index');
   }
 
 
@@ -178,7 +176,7 @@ class PlatPrepareController extends Controller
      */
     public function listesPlatPrepares()
     {
-        $platPrepares = \App\platPrepare::orderBy('id_famille')->orderBy('nom')->get();
+        $platPrepares = \App\PlatPrepare::orderBy('id_famille')->orderBy('nom')->get();
         return $platPrepares;
     }
   

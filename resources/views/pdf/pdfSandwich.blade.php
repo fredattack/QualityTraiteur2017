@@ -44,13 +44,7 @@
         $listFamille = $data['famille'];
         $lesComposants = $data['lesComposants'];
         $listProduit = $data['sandwiche'];
-//            echo '<tr>';
-//                echo '<td style="width: 30%"></td>' ;
-//                echo '<td style="width: 50%"></td>' ;
-//                echo '<td class="prixTitre" style="width: 10%;text-decoration: underline">prix 1/3</td>' ;
-//                echo '<td class="prixTitre" style="width: 10%;text-decoration: underline ">prix 1/2</td>' ;
-//                echo '</tr>';
-//            echo '</table>';
+//
 
         for ($i = 0; $i < count($listFamille); $i++) {
             echo "<h3 style='text-decoration: underline'>Les " .$listFamille[$i]->nom . " :</h3>";

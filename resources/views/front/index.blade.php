@@ -12,7 +12,7 @@
 </script>
     <div class="container">
         <div class="col-lg-12" id="zoneNews">
-        @php($lesNotes= \App\note::where('page', 'home')->orWhere('page', 'Toutes les pages')->get())
+        @php($lesNotes= \App\Note::where('page', 'home')->orWhere('page', 'Toutes les pages')->get())
         @foreach($lesNotes as $laNote)
             <div class="alert alert-{{$laNote->style}}">
                 <strong>{{$laNote->titre}}</strong> {{$laNote->texte}}

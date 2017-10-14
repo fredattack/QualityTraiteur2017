@@ -50,19 +50,17 @@ class AdviseController extends Controller
   public function store(Request $request)
   {
       $this->validate($request, [
-          'userName' => 'required',
-          'userEmail' => 'required',
-          'localite' => 'required',
-          'message' => 'required',
-
-
+          'note'=>'bail|required|min:0.5',
+          'userName' => 'bail|required',
+          'userEmail' => 'bail|required',
+          'localite' => 'bail|required',
+          'message' => 'bail|required',
       ]);
-//      var_dump($request);
-//      die();
+//      dd($request);
       $input = $request->all();
 
       \App\Advise::create($input);
-      return back();
+      redirect('guestBook');
   }
 
   /**

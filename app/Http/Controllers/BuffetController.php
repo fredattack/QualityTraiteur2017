@@ -16,14 +16,14 @@ class BuffetController extends Controller
      */
     public function index()
     {
-        $listeBuffets = \App\buffet::all();
-        return view('buffet.index', compact('listeBuffets'));
+        $listeBuffets = \App\Buffet::all();
+        return view('Buffet.index', compact('listeBuffets'));
     }
 
     public function frontIndex()
     {
         $arr=[];
-        $arr['buffet']= \App\buffet::all();
+        $arr['buffet']= \App\Buffet::orderBy('prix', 'asc')->get();
         $arr['lesImages']=session()->all();
 
         return response($arr);
@@ -36,7 +36,7 @@ class BuffetController extends Controller
      */
     public function create()
     {
-        return view('buffet.create');
+        return view('Buffet.create');
     }
 
     /**
@@ -51,7 +51,6 @@ class BuffetController extends Controller
             'prix' => 'bail|required|numeric',
             'description' => 'bail|required|max:1000',
         ]);
-//        var_dump($request);
 
         $buffet = $request->except('image');
         //Isoler le nom du buffet pour créer le nom du nouveau RolePhoto
@@ -81,7 +80,7 @@ class BuffetController extends Controller
     public function show($id)
     {
         $buffet = \App\Buffet::findOrFail($id);
-        return view('buffet.show',compact('buffet'));
+        return view('Buffet.show',compact('buffet'));
     }
 
     /**
@@ -93,7 +92,7 @@ class BuffetController extends Controller
     public function edit($id)
     {
         $leBuffet = \App\Buffet::findOrFail($id);
-        return view('buffet.edit',compact('leBuffet'));
+        return view('Buffet.edit',compact('leBuffet'));
     }
 
     /**
@@ -130,12 +129,9 @@ class BuffetController extends Controller
         $roleNom = $buffet->nom;
         $titreImage = $roleNom." Image";
         $nomDuRole = preg_replace('/\s+/', '', $titreImage);
-//        $role = new RolePhotos();
         \App\RolePhotos::where('nom','=', $nomDuRole )->delete();
         $buffet->delete();
-//        $role->();
         return redirect()->route('admin.buffet.index');
-//        return var_dump($role);
     }
 
 }

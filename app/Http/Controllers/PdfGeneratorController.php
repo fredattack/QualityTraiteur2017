@@ -17,9 +17,9 @@ class PdfGeneratorController extends Controller
 
     public function pdfSandwich(Request $request)
     {
-        $data['sandwiche'] = \App\sandwiche::orderBy('id')->get();
+        $data['sandwiche'] = \App\Sandwiche::orderBy('id')->get();
         $sandwiches=$data['sandwiche'];
-        $data['famille'] =    \App\Famillesandwiche::orderBy('id', 'desc')->get();
+        $data['famille'] =    \App\Famillesandwiche::orderBy('id', 'asc')->get();
          foreach ($sandwiches as $sandwiche) {
              $id = $sandwiche->id;
              $sandwiche->composant = DB::table('ingredient_sandwiche')

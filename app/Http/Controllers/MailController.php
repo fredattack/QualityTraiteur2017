@@ -12,10 +12,10 @@ class MailController extends Controller
     public function send(Request $request){
 
         $this->validate($request, [
-            'nom' => 'bail|required|alpha|max:75',
+            'nom' => 'bail|required|max:75',
             'email' => 'bail|required|email|max:75',
             'object' => 'bail|required',
-            'leMessage' => 'bail|required|alpha|max:400',
+            'leMessage' => 'bail|required|max:400',
 
         ]);
 

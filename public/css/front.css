@@ -1,5 +1,5 @@
 /*
-******NavBar************
+******NavBar***********
 */
 body{
     color: #5e5e5e;
@@ -32,6 +32,8 @@ transition-duration: 1.5s;
 -o-transition-property: -o-transform;
 transition-property: transform;
 }
+
+
 #NavLogo{
 max-width:10em;
 margin-bottom: 2em;
@@ -170,6 +172,20 @@ transition-property: transform;
     margin-top: 100px;
 }
 
+/*************contact********************/
+#contactTitle{
+    margin-top:8em;
+}
+
+#maps{
+    /*margin-bottom: 10em;*/
+}
+#messageForm{
+    margin-bottom: 2em;
+}
+#alertMessage{
+    margin-top:8em;
+}
 
 /*************FOOTER********************/
 
@@ -178,7 +194,6 @@ transition-property: transform;
     font-size: medium;
     font-weight: 100;
     margin-top: 0;
-
 }
 
 .socialIcon{
@@ -186,6 +201,7 @@ transition-property: transform;
     margin-left: 1em;
     margin-right: 0em;
 }
+
 #footer{
     max-height: 5em;
 }
@@ -196,18 +212,18 @@ transition-property: transform;
     display: inline;
 }
 
-
-
 #ouvertureLabel a{
     color: white;
     cursor: pointer;
 }
 
-/* Contact*/
-#messageForm,#alertMessage{
-    margin-top:8em;
-    padding-left: 5em;
-    padding-right: 5em
+#messageForm{
+    margin-top: 10em;
+}
+
+#messageFormText{
+    margin-left: 0em;
+    margin-right: 0em;
 }
 
 #AverageNote{
@@ -250,6 +266,10 @@ transition-property: transform;
     min-height: 15em;
 }
 
+#modalBtn{
+    /*visibility: hidden;*/
+}
+
 .adviseCard{
     padding: 1em;
 }
@@ -265,10 +285,11 @@ transition-property: transform;
 }
 
 .loader {
+    z-index: 2;
     visibility:hidden;
     position: fixed;
     left:48%;
-    top:74%;
+    top:70%;
     border: 3px solid #5e5e5e;
     border-radius: 50%;
     border-top: 10px solid black;
@@ -296,10 +317,50 @@ transition-property: transform;
 }
 
 #pdfBody{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
     width:67%;
 }
 
 
 #pdfLogo {
         width:50%}
+
+
+
+@media only screen and (max-width: 766px) {
+
+    /*NavBar*/
+    .collapsing, .in {background-color: #FFFFFF;}
+    .collapsing ul li a, .in ul li a {color: #555!important;}
+    .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1!important;}
+
+    /*Guestbook*/
+    #AverageNote,#messageFormText,#adviseButton{
+        width:100%;
+    }
+    #averagenote{
+        margin-top:1em;
+    }
+    .commentBlock{
+        width: 100%;
+    }
+    .navbar{
+        /*height: 4em;*/
+        line-height: 1em;
+    }
+    .socialIcon{
+        width:  2em;
+        margin-left: -1em;
+        margin-right: 1em;
+    }
+    #adressfoot{
+        visibility: hidden;
+    }
+    #messageForm{
+        margin-bottom: 6em;
+    }
+
+    #maps{
+        margin-bottom: 2em;
+    }
+}

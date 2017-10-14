@@ -32,7 +32,7 @@ class PhotoController extends Controller
     {
         $roles= \App\RolePhotos::lists('nom', 'id');
 
-        return view('photo.create', compact('roles'));
+        return view('Photo.create', compact('roles'));
     }
 
     /**
@@ -43,24 +43,25 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'titre' => 'bail|required|alpha|max:255|unique:photos',
-            'nom' => 'bail|required|alpha|max:255|unique:photos',
-            'image' => 'bail|size:1000|required'
-        ]);
-
+//        $this->validate($request, [
+//            'titre' => 'bail|required|max:255|unique:photos',
+//            'nom' => 'bail|required|max:255|unique:photos',
+////            'image' => 'bail|required'
+//        ]);
+dd($request);
         $file = $request->file('image');
         $name = $request->file('image')->getClientOriginalName();
         $input = new Photo();
         $this->remplaceRoleAttribué($request);
         if(isset($file))
         {
-        $destinationPath = 'image';
-        $file->move($destinationPath,$name);
-        $input->nom =$name;
-        $input->role_id = $request->role_id;
-        $input->titre = $request->titre;
-        $input->save();
+            $destinationPath = 'image';
+            $file->move($destinationPath,$name);
+            $input->nom =$name;
+            $input->role_id = $request->role_id;
+            $input->titre = $request->titre;
+//            dd($file);
+            $input->save();
             app('App\Http\Controllers\GeneralController')->generateImage();
         return redirect('admin/photo')->with('message', 'la photo '.$input->titre.' a bien été ajoutée!');
         }

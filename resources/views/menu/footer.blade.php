@@ -8,20 +8,18 @@
                 <img class="socialIcon" src="image/instagram-logo.png">
             </a>
         </div>
-        <div class="col-lg-6 col-xs-6">
+        <div class="col-lg-6 col-xs-7" style="margin-left: -1em">
             <h4>
-                &copy;
-                Quality Traiteur
+                &copy;&nbsp;Quality&nbsp;Traiteur
             </h4>
-            <p>
+            <p id="adressfoot">
                 42 Avenue Reine Astrid
-                4300 Waremme.
+                4300 Waremme
                 Tel : 019/67.66.10
-                Gsm : 0471/89.89.17
+                {{--Gsm : 0471/89.89.17--}}
             </p>
         </div>
-        {{----}}{{-- @TODO create modal with horaires  --}}
-        <div class="col-lg-4 col-xs-4" id="ouvertureLabel">
+        <div class="col-lg-4 col-xs-3" id="ouvertureLabel">
         </div>
     </div>
 

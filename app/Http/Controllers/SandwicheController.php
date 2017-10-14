@@ -14,14 +14,14 @@ class SandwicheController extends Controller
     {
         $sandwiches=$this->listesSandwichesEtComposants();
        $familleSandwiches =\App\Famillesandwiche::lists('nom', 'id');
-       return view('sandwiche.index', compact(['sandwiches','familleSandwiches']));
+       return view('Sandwiche.index', compact(['sandwiches','familleSandwiches']));
 
     }
 
     public function frontIndex()
     {
         $compList= array();
-        $sandwiches = \App\sandwiche::orderBy('nom')->get();
+        $sandwiches = \App\Sandwiche::orderBy('familleSandwiche_id')->get();
         foreach ($sandwiches as $sandwiche) {
             $id = $sandwiche->id;
             $sandwiche->composant = DB::table('ingredient_sandwiche')
@@ -32,7 +32,7 @@ class SandwicheController extends Controller
             $compList[$id]= $sandwiche->composant;
 
         }
-        $familleSandwiches =\App\Famillesandwiche::orderBy('id', 'desc')->get();
+        $familleSandwiches =\App\Famillesandwiche::orderBy('id', 'asc')->get();
         $arr= array();
         $arr['lesSandwiches'] = $sandwiches;
         $arr['lesFamilles'] = $familleSandwiches;
@@ -47,15 +47,15 @@ class SandwicheController extends Controller
         $listeDesIngredients = DB::table('ingredients')->orderBy('nom')->get();
 
         $familleSandwiches =\App\Famillesandwiche::orderBy('nom')->lists('nom', 'id');
-        return view('sandwiche.create',compact(['listeDesIngredients','familleSandwiches' ]));
+        return view('Sandwiche.create',compact(['listeDesIngredients','familleSandwiches' ]));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nom' => 'bail|required|unique:sandwiches|max:75',
+            'nom' => 'bail|required|max:75',
             'prixTiers' => 'bail|required|numeric',
-            'familleSandwiche_id' =>'bail|required',
+            'familleSandwiches' =>'bail|required',
             'prixDemi' => 'bail|required|numeric'
         ]);
 
@@ -66,7 +66,7 @@ class SandwicheController extends Controller
         $leNouveauSandwiche = \App\Sandwiche::create($input);
 
         //recuperer les id des ingrédients dans $request (tout sauf nom, prix et _token)
-        $ingredients = (array)$request->except(['nom', '_token','familleSandwiche_id','prixTiers','prixDemi']);
+        $ingredients = (array)$request->except(['nom', '_token','familleSandwiches','prixTiers','prixDemi']);
 
         //ajouter les id des ingrédients dans la table pivot
         $leNouveauSandwiche->ingredients()->sync($ingredients);
@@ -78,7 +78,7 @@ class SandwicheController extends Controller
     {
         $sandwiche = \App\Sandwiche::findOrFail($id);
 
-        return view('sandwiche.show',  compact('sandwiche'));
+        return view('Sandwiche.show',  compact('sandwiche'));
     }
 
     public function edit($id)
@@ -104,33 +104,33 @@ class SandwicheController extends Controller
             array_push ($listeComposant,$item->nom);
         //********************************************************************************************
 
-        return view('sandwiche.edit',  compact(['sandwiche','familleSandwiches','listeDesIngredients','listeComposant']));
+        return view('Sandwiche.edit',  compact(['sandwiche','familleSandwiches','listeDesIngredients','listeComposant']));
     }
 
     public function update(Request $request, $id)
     {
 
         $sandwiche = \App\Sandwiche::findOrFail($id);
-
         $this->validate($request, [
-            'nom' => 'bail|required|unique:sandwiches|max:75',
+            'nom' => 'bail|required|max:75',
             'prixTiers' => 'bail|required|numeric',
-            'familleSandwiche_id' =>'bail|required',
+            'familleSandwiches' =>'bail|required',
             'prixDemi' => 'bail|required|numeric'
         ]);
 
         $input = $request->all();
+
         //recuperer les id des ingrédients dans $request (tout sauf nom, prix et _token)
         $ingre = (array)$request->except(['nom','prixTiers','familleSandwiches' ,'prixDemi' ,'_token','_method']);
 
         //ajouter les id des ingrédients dans la table pivot
         $sandwiche->ingredients()->sync($ingre);
         $sandwiche->fill($input);
+        $sandwiche->familleSandwiche_id = $request->familleSandwiches;
         $sandwiche->prixTiers=floatval($request->prixTiers);
         $sandwiche->prixDemi=floatval($request->prixDemi);
+//        dd($sandwiche);
         $sandwiche->save();
-//        return var_dump($sandwiche);
-
 
         return redirect('admin/sandwiche')->withOk("Le Sandwiche " . $request->input('name') . " a été modifié.");
     }
@@ -163,7 +163,7 @@ class SandwicheController extends Controller
 
     public function listesSandwichesEtComposants()
     {
-        $sandwiches = \App\sandwiche::orderBy('familleSandwiche_id')->get();
+        $sandwiches = \App\Sandwiche::all();
         $this->GetComposants($sandwiches);
         return $sandwiches;
 

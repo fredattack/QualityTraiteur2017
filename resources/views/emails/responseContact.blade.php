@@ -17,7 +17,7 @@
 
     <div class="container" >
         <div class="col-lg-12" >
-            @php($lesNotes= \App\note::where('page', 'magasin')->orWhere('page', 'Toutes les pages')->get())
+            @php($lesNotes= \App\Note::where('page', 'magasin')->orWhere('page', 'Toutes les pages')->get())
             @if(isset($lesNotes))
                 @foreach($lesNotes as $laNote)
                     <div class="alert alert-{{$laNote->style}}">

@@ -153,7 +153,7 @@
                     {!! Form::close() !!}
                     </div>
                     <div class="col-lg-12">
-                    @php($lesNotes= \App\note::all())
+                    @php($lesNotes= \App\Note::all())
                     @if(count($lesNotes)!= 0)
                         index
                         <table class="table table-bordered">
@@ -265,7 +265,7 @@
             function PassVal(res)
             {
 //            alert(res['startTime']);
-            $('#modalForm').attr('action', 'http://localhost/laravelTest/public/workhour/'+res['id']);
+            $('#modalForm').attr('action', 'http://www.qualitytraiteur.be/workhour/'+res['id']);
             $('#startTime').val(res['startTime']);
             $('#endTime').val(res['endTime']);
             $('#jourNom').append(res['day']);
